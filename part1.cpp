@@ -5,7 +5,7 @@
 #include<numeric>
 using namespace std;
 
-double enterval(string prompt)
+double enterval(string prompt)// function that takes a prompt input and returns the requested output (used as a macro for convenience)
 {
   cout << "Enter the " << prompt <<": ";
 
@@ -58,7 +58,7 @@ void part1()
   double BaggageMomArm = enterval("moment arm of baggage (in)");
 
 
-  // calculations
+  // calculations (accumulate function adds all values in the vector)
   double totalWeight = emptyWeight + accumulate(frontSeatWeights.begin(), frontSeatWeights.end(), 0.0) + accumulate(rearSeatWeights.begin(), rearSeatWeights.end(), 0.0) + fuelWeightperGal * fuelVol + BaggageWeight;
 
   double totalMomArm = emptyWeightMom + accumulate(frontSeatWeights.begin(), frontSeatWeights.end(), 0.0)*frontSeatMomArm + accumulate(rearSeatWeights.begin(), rearSeatWeights.end(), 0.0)*rearSeatMomArm + fuelWeightperGal * fuelVol*fuelMomArm + BaggageWeight*BaggageMomArm;
@@ -68,7 +68,8 @@ void part1()
   cout << "The weight of the aircraft is " << totalWeight << " pounds." << endl;
   cout << "The center of gravity of the aircraft is " << centerOfGravity << " inches" << endl;
 
-  bool isSafe = false;
+  // checking to see if the aircraft is opperating in its opperating perameters
+  bool isSafe;
   
   
   if (totalWeight < 2950 && (centerOfGravity > 82.1 && centerOfGravity < 84.7))
