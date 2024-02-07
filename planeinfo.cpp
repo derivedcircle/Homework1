@@ -11,9 +11,9 @@ Plane::Plane(string from,string to)// plane constructor
 	origin = from;
 	destination = to;
 	// setting up all of the distance shit using the information from container from q2
-	destinationsSCE["PHL"] = 160;
-	destinationsSCE["ORD"] = 640;
-	destinationsSCE["EWR"] = 220;
+	destinationsSCE["PHL"] = 160.0;
+	destinationsSCE["ORD"] = 640.0;
+	destinationsSCE["EWR"] = 220.0;
 	if (origin == "SCE")
 		distance = destinationsSCE[destination];
 	else
@@ -21,10 +21,12 @@ Plane::Plane(string from,string to)// plane constructor
 
 	// initializing pos,vel,at_sce to 0 as per q4 instructions
 	
-	pos = 0;
-	vel = 0;
+	pos = 0.0;
+	vel = 0.0;
 	at_SCE = false;
-	cout<<"Plane created at "<< endl; // add class/object pointer
+
+	// a print statement including the memory address of the plane
+	cout<<"Plane created with a tail number "<< this << endl;
 }
 
 //destructor
@@ -50,7 +52,7 @@ void Plane::operate(double dt)
 		destination = holder;
 
 		// resetting position
-		pos = 0;
+		pos = 0.0;
 
 	}
 	else
@@ -61,7 +63,7 @@ void Plane::operate(double dt)
 		destination = holder;
 
 		// resetting position
-		pos = 0;
+		pos = 0.0;
 	}
 }
 
