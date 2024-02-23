@@ -4,7 +4,7 @@
 #include<numeric>
 #include "part1.h"
 #include <map>
-//#include "planeinfo.h"
+#include "planeinfo.h"
 #include "pilotinfo.h"
 #include<memory>
 
@@ -14,9 +14,16 @@ using namespace std;
 
 int main()
 {
-  //bool safe = part1();
-  //cout << "The aircraft is " << safe << endl;
-  //part1();
+	
+	{// part 1
+		bool planeSafe = part1();
+		if (planeSafe)
+			cout << "The plane is safe" << endl;
+		else
+			cout << "The plane exceeds CG or Weight limits" << endl;
+	}
+
+	cout << endl;
 
 	// setting standard values used for all 3 sets of flight tracking
 
@@ -113,8 +120,7 @@ int main()
 		{
 			phillyboundRef->operate(timestepstandard / 3600); // steps aircraft forward by 15 seconds
 			
-			// outputs time since start in seconds and the aircraft position (for debugging)
-			//cout << "Time: " << i * 15.0 << " seconds, Position: " << phillyboundRef->getPos() << " miles." << endl;
+			
 			if (phillyboundRef->getAt_SCE())// prints if the aircraft is at state college
 			{
 				cout << endl << "The plane " << phillyboundRef << " is at SCE at Time: " << i * 15.0 << " seconds." << endl;

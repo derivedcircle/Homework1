@@ -17,7 +17,7 @@ double enterval(string prompt)// function that takes a prompt input and returns 
 }
 
 
-void part1()
+bool part1()
 {
   //starting sequence
   cout << "Part 1, Aircraft Peramteters" << endl;
@@ -78,6 +78,6 @@ void part1()
     isSafe = false;
 
 
-  //return isSafe;
+  return isSafe;
 }
 

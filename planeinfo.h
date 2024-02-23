@@ -1,3 +1,6 @@
+#ifndef PLANE_H
+#define PLANE_H
+
 #include<iostream>
 #include<map>
 #include<vector>
@@ -27,3 +30,5 @@ class Plane {
 	void setVel(double velin);
 	
 };
+
+#endif

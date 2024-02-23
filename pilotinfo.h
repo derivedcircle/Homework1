@@ -1,3 +1,6 @@
+#ifndef PILOT_H
+#define PILOT_H
+
 #include<iostream>
 #include<string>
 #include "planeinfo.h"
@@ -22,3 +25,5 @@ class Pilot {
 
 	shared_ptr<Plane> myNewPlane;
 };
+
+#endif
