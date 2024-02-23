@@ -95,42 +95,48 @@ int main()
 		cout << "---------------------------------------------------------" << endl;
 		Pilot pilcharlie("Charlie");
 		Pilot pildelta("Delta");
-		Plane phillybound("SCE", "PHL");
-		phillybound.setVel(velocitystandard);
+		
+		// creates the reference to the phillybound plane
+		shared_ptr<Plane> phillyboundRef = make_shared<Plane>("SCE", "PHL");
 
-		// setting alpha as the initial pilot flying
-		pilcharlie.myNewPlane = make_shared<Plane>(*&phillybound);//error here
-		//pilcharlie.myNewPlane 
-		//pildelta.myNewPlane;// nullptr;//make_shared<Plane>(nullptr);
+		//sets velocity for phillybound plane
+		phillyboundRef->setVel(velocitystandard);
+
+		// setting charlie as the origional pilot flying
+		pilcharlie.myNewPlane = phillyboundRef;
+		pildelta.myNewPlane = nullptr;
+		
+		
 
 		// loop for regular plane opperation
 		for (int i = 0; i < maxitters; i++)// starts for loop for 1000 itterations of the opperate command
 		{
-			phillybound.operate(timestepstandard / 3600); // steps aircraft forward by 15 seconds
+			phillyboundRef->operate(timestepstandard / 3600); // steps aircraft forward by 15 seconds
+			
 			// outputs time since start in seconds and the aircraft position (for debugging)
-			// << "Time: " << i * 15.0 << " seconds, Position: " << chicagobound.getPos() << " miles." << endl;
-			if (phillybound.getAt_SCE())// prints if the aircraft is at state college
+			//cout << "Time: " << i * 15.0 << " seconds, Position: " << phillyboundRef->getPos() << " miles." << endl;
+			if (phillyboundRef->getAt_SCE())// prints if the aircraft is at state college
 			{
-				cout << endl << "The plane " << &phillybound << " is at SCE at Time: " << i * 15.0 << " seconds." << endl;
-				if (( & pildelta.myNewPlane))// this if statement tree swapps the PILOT in Command
+				cout << endl << "The plane " << phillyboundRef << " is at SCE at Time: " << i * 15.0 << " seconds." << endl;
+				if (!(pildelta.myNewPlane))// this if statement tree swapps the PILOT in Command
 				{
 					
 					swap(pildelta.myNewPlane, pilcharlie.myNewPlane);// swaps the refrences for the two pilots
 					cout << "Pilot " << pildelta.getName() << " with certificate number " << &pildelta << " is in control of plane: " 
-						<< &pildelta.myNewPlane << endl;
+						<< pildelta.myNewPlane << endl;
 					
 					cout << "Pilot " << pilcharlie.getName() << " with certificate number " << &pilcharlie << " is in control of plane: "
-						<< &pilcharlie.myNewPlane << endl;
+						<< pilcharlie.myNewPlane << endl;
 				}
-				else if ((&pilcharlie.myNewPlane))
+				else if (!(pilcharlie.myNewPlane))
 				{
 					
 					swap(pildelta.myNewPlane, pilcharlie.myNewPlane);// swaps the refrences for the two pilots
 					cout << "Pilot " << pilcharlie.getName() << " with certificate number " << &pilcharlie << " is in control of plane: "
-						<< &pilcharlie.myNewPlane << endl;
+						<< pilcharlie.myNewPlane << endl;
 					
 					cout << "Pilot " << pildelta.getName() << " with certificate number " << &pildelta << " is in control of plane: "
-						<< &pildelta.myNewPlane << endl;
+						<< pildelta.myNewPlane << endl;
 				}
 			}
 

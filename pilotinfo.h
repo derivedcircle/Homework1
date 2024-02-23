@@ -20,5 +20,5 @@ class Pilot {
 	Plane* myPlane;
 	void setPlane(Plane* myPlanein);
 
-	weak_ptr<Plane> myNewPlane;
+	shared_ptr<Plane> myNewPlane;
 };
