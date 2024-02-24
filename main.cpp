@@ -11,6 +11,8 @@
 
 
 using namespace std;
+// including all relevant libraries and setting default namespace to standard
+
 
 int main()
 {
